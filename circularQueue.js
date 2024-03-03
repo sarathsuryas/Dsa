@@ -1,36 +1,32 @@
-class CircularQueue {
-  constructor(size) {
-   this.element = [];
-   this.size = size
-   this.length = 0
-   this.front = 0
-   this.back = -1
+class circularQueue {
+  constructor(size){
+    this.queue = Array(size)
+    this.size = size
+    this.back = -1
+    this.front = 0
+    this.length = 0
   }
- isEmpty() {
-   return (this.length == 0)
+  isEmpty(){
+    return this.length === 0
   }
- enqueue(element) {
-   if (this.length >= this.size) throw (new Error("Maximum length exceeded"))
-   this.back++
-    this.element[this.back % this.size] = element
-   this.length++
+  enqueue(value){
+     if(this.size===this.length) return console.log("queue is full")
+     this.back++
+     this.queue[this.back % this.size] = value
+     this.length++
   }
- dequeue() {
-   if (this.isEmpty()) throw (new Error("No elements in the queue"))
-   const value = this.getFront()
-   this.element[this.front % this.size] = null
-   this.front++
-   this.length--
-   return value
+  dequeue(){
+    if(this.isEmpty()) return console.log("queue is Empty") 
+    this.queue[this.front] = null
+    this.front++
+    this.length--
   }
- getFront() {
-   if (this.isEmpty()) throw (new Error("No elements in the queue"))
-   return this.element[this.front % this.size]
-  }
- clear() {
-   this.element = new Array()
-   this.length = 0
-   this.back = 0
-   this.front = -1
-  }
- }
+}
+
+const queue = new circularQueue(2)
+queue.enqueue(10)
+queue.enqueue(20)
+queue.dequeue()
+queue.enqueue(11)
+queue.dequeue()
+console.log(queue.queue)

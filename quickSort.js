@@ -14,5 +14,5 @@ function quickSort(array){
   }
   return [...quickSort(left),pivot,...quickSort(right)]
 }
-const array = [1,2,3,4,5]
+const array = []
 console.log(quickSort(array))

@@ -1,18 +1,20 @@
-const array = [10]
-
-for(let i = 0; i < array.length-1; i++){
-    let lowestValue = array[i]
-    let indexOfLowestValue = i
-    for(let j = i + 1; j < array.length; j++){
+const array = [10,3,4,2,1]
+function selectionSort(array){
+  let indexOfLowestValue,lowestValue
+  for(let i = 0; i < array.length-1; i++){
+    lowestValue = array[i]
+    indexOfLowestValue = i
+    for(let j = i+1; j < array.length; j++){
       if(array[i] > array[j]){
         lowestValue = array[j]
-        indexOfLowestValue = j
+         indexOfLowestValue = j
       }
       let temp = array[i]
-      array[i] = lowestValue
-      array[indexOfLowestValue] = temp  
+      array[i] = array[indexOfLowestValue]
+      array[indexOfLowestValue] = temp 
     }
-    
+  }
+  return array
 }
 
-console.log(array)
+console.log(selectionSort(array))

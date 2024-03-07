@@ -71,20 +71,6 @@ class BinarySearchTree {
       console.log(root.data)
     }
   }
-  min(root) {
-    if(!root.left){
-      return root.data
-    } else {
-     return this.min(root.left)
-    }
-  }
-  max(root) {
-    if(!root.right) {
-      return root.data
-    } else {
-      return this.max(root.right)
-    }
-  }
 }
 
 const bst = new BinarySearchTree()
@@ -95,7 +81,7 @@ bst.insert(15);
 bst.insert(3);
 bst.insert(7); 
 
-console.log(bst.max(bst.root))
+console.log(bst.search(3))
 
 
 

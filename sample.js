@@ -7,16 +7,16 @@ class MaxHeap {
     this.heap.push(value);
     this.heapifyUp();
   }
-  heapifyUp(){
-    let child = this.heap.length-1
-    
-    while(child > 0) {
-      let parent = Math.floor(child/2)
-      if(this.heap[child] > this.heap[parent]){
-        let temp = this.heap[parent]
-        this.heap[parent] = this.heap[child]
-        this.heap[child] = temp
-        child = parent
+
+  heapifyUp() {
+  let index = this.heap.length-1
+    while (0 < index) {
+      let parent = Math.floor(index/2)
+      if(this.heap[parent] < this.heap[index]){
+        const temp = this.heap[parent];
+        this.heap[parent] = this.heap[index];
+        this.heap[index] = temp;
+        index = parent
       }else{
         return
       }
@@ -34,5 +34,5 @@ heap.insert(10);
 heap.insert(15);
 heap.insert(30);
 heap.insert(40);
-
+heap.insert(9)
 heap.printHeap();

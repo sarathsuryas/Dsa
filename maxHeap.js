@@ -22,11 +22,7 @@ class MaxHeap {
       }
     }
   }
-    delete(){
-       this.heap.shift()
-       this.heap.unshift(this.heap.pop())
-    
-  }
+   
 
   printHeap() {
     console.log(this.heap);

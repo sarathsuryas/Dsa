@@ -57,13 +57,6 @@ class BinarySearchTree {
       this.preorder(root.right)
     }
   }
-  inorder(root) {
-    if(root){
-      this.inorder(root.left)
-      console.log(root.data)
-      this.inorder(root.right)
-    }
-  }
   postorder(root){
     if(root){
       this.preorder(root.left)
@@ -71,6 +64,29 @@ class BinarySearchTree {
       console.log(root.data)
     }
   }
+
+  isValidBST() {
+    const inorderValues = [];
+    this.inorder(this.root, inorderValues);
+    
+    // Check if the inorder traversal result is sorted
+    for (let i = 0; i < inorderValues.length; i++) {
+      if (inorderValues[i] >= inorderValues[i + 1]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  inorder(root, result) {
+    if (root) {
+      this.inorder(root.left, result);
+      result.push(root.data);
+      this.inorder(root.right, result);
+    }
+  }
+  
+
 }
 
 const bst = new BinarySearchTree()
@@ -80,8 +96,8 @@ bst.insert(5);
 bst.insert(15);
 bst.insert(3);
 bst.insert(7); 
-
-console.log(bst.search(3))
+console.log(bst.isValidBST()); 
+//console.log(bst.search(3))
 
 
 

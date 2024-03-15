@@ -22,6 +22,39 @@ class Graph {
      console.log(vertex + "->" + [...this.adjacencyList[vertex]])
    }
   }
+  Bfs(startingVertex){
+     const visited = {}
+     const queue = [startingVertex]
+     const result = []
+     visited[startingVertex] = true
+     while(queue.length) {
+      const currentVertex = queue.shift()
+      result.push(currentVertex)
+      this.adjacencyList[currentVertex].forEach(neighbour => {
+           if(!visited[neighbour]){
+            visited[neighbour] = true
+            queue.push(neighbour)
+           }
+      });
+     }
+     return result
+  }
+  dfs(startingVertex) {
+    const visited = {}
+    const result = []
+    const depthFirst = (vertex) => {
+      visited[vertex] = true
+      result.push(vertex)
+       this.adjacencyList[vertex].forEach((neighbour)=> {
+           if(!visited[neighbour]) {
+             depthFirst(neighbour)
+           }
+       })
+    }
+    depthFirst(startingVertex)
+
+    return result
+  }
   hasEdge(vertex1,vertex2) {
      return (this.adjacencyList[vertex1].has(vertex2) && this.adjacencyList[vertex2].has(vertex1))
   }
@@ -45,11 +78,23 @@ class Graph {
  graph.addVertex("A")
  graph.addVertex("B")
  graph.addVertex("C")
+ graph.addVertex("D")
+ graph.addVertex("E")
+ graph.addVertex("F")
+ graph.addVertex("G")
  graph.addEdge("A","B")
+ graph.addEdge("A","D")
+ graph.addEdge("A","E")
+ graph.addEdge("B","E")
  graph.addEdge("B","C")
+ graph.addEdge("C","E")
+ graph.addEdge("C","F")
+ graph.addEdge("C","G")
+ graph.addEdge("D","E")
+ graph.addEdge("F","E")
+ graph.addEdge("G","F")
  
- 
- console.log(graph.hasEdge("A","B"))
- graph.removeVertex("B")
+ //console.log(graph.hasEdge("A","B"))
+ //graph.removeVertex("A")
  graph.display()
- console.log(graph.adjacencyList)
+ console.log(graph.dfs("A"))

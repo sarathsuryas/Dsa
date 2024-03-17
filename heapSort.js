@@ -25,7 +25,7 @@ class MaxHeap {
       largest = right
     }
     if(i!==largest){
-      this.swap(largest,i)
+      this.swap(i,largest)
       this.maxHeapify(heap,largest,n)
     }
   }
